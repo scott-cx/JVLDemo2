@@ -43,7 +43,7 @@ jobs:
         sca_username: ${{ secrets.SCA_USERNAME }}
         sca_password: ${{ secrets.SCA_PASSWORD }}  
         incremental: false
-        break_build: false
+        break_build: true
         scanners: sca, sast
         bug_tracker: GITHUBPULL
-        params: --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.head_ref }} --merge-id=${{ github.event.number }}
+        params: --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.head_ref }} --merge-id=${{ github.event.number }} --github.threshold.high=0
