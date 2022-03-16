@@ -34,7 +34,7 @@ jobs:
       uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.1
       with:
         project: ${{ secrets.CHECKMARX_PROJECT }} 
-        team: /CxServer/SP/Company/Users
+        team: CxServer
         checkmarx_url: ${{ secrets.CHECKMARX_URL }}   # To be stored in GitHub Secrets.
         checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}  # To be stored in GitHub Secrets.
         checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}  # To be stored in GitHub Secrets.
@@ -43,7 +43,7 @@ jobs:
         sca_username: ${{ secrets.SCA_USERNAME }}
         sca_password: ${{ secrets.SCA_PASSWORD }}  
         incremental: false
-        break_build: false
-        scanners: sca, sast
+        break_build: true
+        scanners: sast
         bug_tracker: GITHUBPULL
-        params: --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.head_ref }} --merge-id=${{ github.event.number }}
+        params: --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.head_ref }} --merge-id=${{ github.event.number }} --github.threshold.high=0
